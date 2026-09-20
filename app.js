@@ -5,7 +5,7 @@
 
 // ⚠️ ⚠️ ⚠️ مهم: غيّر هذا الرابط بعد ما ترفع Vercel ⚠️ ⚠️ ⚠️
 // راح يكون: https://gfdxf.serv00.net:12731
-const API_BASE_URL = 'https://gfdxf.serv00.net:12731';
+const API_BASE_URL = 'http://gfdxf.serv00.net:12731';
 
 // ============================================================
 // الحالة العامة
