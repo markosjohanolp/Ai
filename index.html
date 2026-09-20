@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>لوحة التحكم</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+</head>
+<body>
+
+    <!-- شاشة التحميل -->
+    <div id="loading-screen">
+        <div class="loader"></div>
+        <p>جاري التحميل...</p>
+    </div>
+
+    <!-- الحاوية الرئيسية -->
+    <div id="app" style="display: none;">
+
+        <!-- الهيدر -->
+        <header class="app-header">
+            <div class="header-content">
+                <div class="logo">
+                    <span class="logo-icon">✨</span>
+                    <h1>لوحة التحكم</h1>
+                </div>
+                <div class="user-badge" id="user-name">
+                    <span>👤</span>
+                    <span id="user-display">...</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- شريط التنقل السفلي -->
+        <nav class="bottom-nav">
+            <button class="nav-btn active" data-page="dashboard">
+                <span class="nav-icon">🏠</span>
+                <span class="nav-label">الرئيسية</span>
+            </button>
+            <button class="nav-btn" data-page="channels">
+                <span class="nav-icon">📢</span>
+                <span class="nav-label">القنوات</span>
+            </button>
+            <button class="nav-btn" data-page="posts">
+                <span class="nav-icon">📝</span>
+                <span class="nav-label">العبارات</span>
+            </button>
+            <button class="nav-btn" data-page="seeds">
+                <span class="nav-icon">🌱</span>
+                <span class="nav-label">البذور</span>
+            </button>
+            <button class="nav-btn" data-page="settings">
+                <span class="nav-icon">⚙️</span>
+                <span class="nav-label">الإعدادات</span>
+            </button>
+        </nav>
+
+        <!-- المحتوى -->
+        <main class="app-content">
+
+            <!-- ============ الصفحة الرئيسية ============ -->
+            <section class="page active" id="page-dashboard">
+                <div class="page-header">
+                    <h2>الرئيسية</h2>
+                    <p class="page-subtitle">نظرة عامة على المشروع</p>
+                </div>
+
+                <!-- إحصائيات -->
+                <div class="stats-grid" id="stats-grid">
+                    <div class="stat-card glass">
+                        <div class="stat-icon">📝</div>
+                        <div class="stat-info">
+                            <span class="stat-value" id="stat-posts">—</span>
+                            <span class="stat-label">منشور</span>
+                        </div>
+                    </div>
+                    <div class="stat-card glass">
+                        <div class="stat-icon">🌱</div>
+                        <div class="stat-info">
+                            <span class="stat-value" id="stat-seeds">—</span>
+                            <span class="stat-label">بذرة</span>
+                        </div>
+                    </div>
+                    <div class="stat-card glass">
+                        <div class="stat-icon">📢</div>
+                        <div class="stat-info">
+                            <span class="stat-value" id="stat-channels">—</span>
+                            <span class="stat-label">قناة</span>
+                        </div>
+                    </div>
+                    <div class="stat-card glass">
+                        <div class="stat-icon">🔑</div>
+                        <div class="stat-info">
+                            <span class="stat-value" id="stat-keys">—</span>
+                            <span class="stat-label">مفتاح</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- إجراءات سريعة -->
+                <div class="quick-actions">
+                    <h3>إجراءات سريعة</h3>
+                    <div class="action-buttons">
+                        <button class="action-btn gradient-purple" onclick="App.generatePost()">
+                            <span>⚡</span>
+                            <span>توليد فوري</span>
+                        </button>
+                        <button class="action-btn gradient-blue" onclick="App.publishNow()">
+                            <span>🚀</span>
+                            <span>نشر الآن</span>
+                        </button>
+                        <button class="action-btn gradient-pink" onclick="App.createBackup()">
+                            <span>💾</span>
+                            <span>نسخة احتياطية</span>
+                        </button>
+                        <button class="action-btn gradient-green" onclick="App.sendReport()">
+                            <span>📤</span>
+                            <span>تقرير فوري</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- آخر المنشورات -->
+                <div class="section">
+                    <div class="section-header">
+                        <h3>📜 آخر المنشورات</h3>
+                        <button class="link-btn" onclick="App.loadPosts()">تحديث</button>
+                    </div>
+                    <div class="posts-list" id="recent-posts">
+                        <div class="empty-state">جاري التحميل...</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ============ صفحة القنوات ============ -->
+            <section class="page" id="page-channels">
+                <div class="page-header">
+                    <h2>القنوات</h2>
+                    <p class="page-subtitle">إدارة قنوات تيليجرام</p>
+                </div>
+
+                <div class="section">
+                    <button class="action-btn full-width gradient-purple" onclick="App.showAddChannel()">
+                        <span>➕</span>
+                        <span>إضافة قناة جديدة</span>
+                    </button>
+                </div>
+
+                <div class="channels-list" id="channels-list">
+                    <div class="empty-state">جاري التحميل...</div>
+                </div>
+            </section>
+
+            <!-- ============ صفحة العبارات ============ -->
+            <section class="page" id="page-posts">
+                <div class="page-header">
+                    <h2>العبارات</h2>
+                    <p class="page-subtitle">المعلّقة والمنشورة</p>
+                </div>
+
+                <div class="tabs">
+                    <button class="tab active" data-tab="pending" onclick="App.switchPostTab('pending')">
+                        ⏳ معلّقة
+                    </button>
+                    <button class="tab" data-tab="published" onclick="App.switchPostTab('published')">
+                        ✅ منشورة
+                    </button>
+                </div>
+
+                <div class="section">
+                    <button class="action-btn full-width gradient-pink" onclick="App.reverseSeed()">
+                        <span>🔥</span>
+                        <span>توليد عكسي من الأفضل</span>
+                    </button>
+                </div>
+
+                <div class="posts-list" id="posts-list">
+                    <div class="empty-state">جاري التحميل...</div>
+                </div>
+            </section>
+
+            <!-- ============ صفحة البذور ============ -->
+            <section class="page" id="page-seeds">
+                <div class="page-header">
+                    <h2>البذور</h2>
+                    <p class="page-subtitle">مصادر التوليد</p>
+                </div>
+
+                <div class="section">
+                    <button class="action-btn full-width gradient-purple" onclick="App.showAddSeed()">
+                        <span>➕</span>
+                        <span>إضافة بذرة جديدة</span>
+                    </button>
+                </div>
+
+                <div class="seeds-list" id="seeds-list">
+                    <div class="empty-state">جاري التحميل...</div>
+                </div>
+            </section>
+
+            <!-- ============ صفحة الإعدادات ============ -->
+            <section class="page" id="page-settings">
+                <div class="page-header">
+                    <h2>الإعدادات</h2>
+                    <p class="page-subtitle">إدارة النظام</p>
+                </div>
+
+                <div class="settings-list">
+                    <div class="settings-item glass" onclick="App.openKeys()">
+                        <div class="settings-icon">🔑</div>
+                        <div class="settings-info">
+                            <h4>مفاتيح Groq</h4>
+                            <p>إدارة المفاتيح النشطة</p>
+                        </div>
+                        <div class="settings-arrow">‹</div>
+                    </div>
+
+                    <div class="settings-item glass" onclick="App.openSchedule()">
+                        <div class="settings-icon">📅</div>
+                        <div class="settings-info">
+                            <h4>جدول النشر</h4>
+                            <p>أوقات النشر المحددة</p>
+                        </div>
+                        <div class="settings-arrow">‹</div>
+                    </div>
+
+                    <div class="settings-item glass" onclick="App.createBackup()">
+                        <div class="settings-icon">💾</div>
+                        <div class="settings-info">
+                            <h4>نسخة احتياطية</h4>
+                            <p>حفظ البيانات</p>
+                        </div>
+                        <div class="settings-arrow">‹</div>
+                    </div>
+
+                    <div class="settings-item glass" onclick="App.sendReport()">
+                        <div class="settings-icon">📤</div>
+                        <div class="settings-info">
+                            <h4>تقرير فوري</h4>
+                            <p>إرسال التقرير الآن</p>
+                        </div>
+                        <div class="settings-arrow">‹</div>
+                    </div>
+
+                    <div class="settings-item glass" onclick="App.showBlacklist()">
+                        <div class="settings-icon">🚫</div>
+                        <div class="settings-info">
+                            <h4>الكلمات الممنوعة</h4>
+                            <p>قائمة سوداء للكلمات</p>
+                        </div>
+                        <div class="settings-arrow">‹</div>
+                    </div>
+                </div>
+
+                <div class="version-info">
+                    <p>الإصدار 1.0.0</p>
+                </div>
+            </section>
+
+        </main>
+
+        <!-- Toast notifications -->
+        <div id="toast-container"></div>
+
+        <!-- Modal -->
+        <div id="modal-overlay" class="modal-overlay" style="display: none;">
+            <div class="modal glass">
+                <div class="modal-header">
+                    <h3 id="modal-title">عنوان</h3>
+                    <button class="modal-close" onclick="App.closeModal()">✕</button>
+                </div>
+                <div class="modal-body" id="modal-body">
+                    <!-- محتوى ديناميكي -->
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
