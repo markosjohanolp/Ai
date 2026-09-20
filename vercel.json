@@ -3,7 +3,11 @@
     "cleanUrls": true,
     "rewrites": [
         {
-            "source": "/(.*)",
+            "source": "/api/(.*)",
+            "destination": "/api/proxy"
+        },
+        {
+            "source": "/((?!api/).*)",
             "destination": "/index.html"
         }
     ],
