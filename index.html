@@ -28,49 +28,24 @@
                     <span class="logo-icon">✨</span>
                     <h1>لوحة التحكم</h1>
                 </div>
-                <div class="user-badge" id="user-name">
+                <div class="user-badge">
                     <span>👤</span>
                     <span id="user-display">...</span>
                 </div>
             </div>
         </header>
 
-        <!-- شريط التنقل السفلي -->
-        <nav class="bottom-nav">
-            <button class="nav-btn active" data-page="dashboard">
-                <span class="nav-icon">🏠</span>
-                <span class="nav-label">الرئيسية</span>
-            </button>
-            <button class="nav-btn" data-page="channels">
-                <span class="nav-icon">📢</span>
-                <span class="nav-label">القنوات</span>
-            </button>
-            <button class="nav-btn" data-page="posts">
-                <span class="nav-icon">📝</span>
-                <span class="nav-label">العبارات</span>
-            </button>
-            <button class="nav-btn" data-page="seeds">
-                <span class="nav-icon">🌱</span>
-                <span class="nav-label">البذور</span>
-            </button>
-            <button class="nav-btn" data-page="settings">
-                <span class="nav-icon">⚙️</span>
-                <span class="nav-label">الإعدادات</span>
-            </button>
-        </nav>
-
         <!-- المحتوى -->
         <main class="app-content">
 
-            <!-- ============ الصفحة الرئيسية ============ -->
+            <!-- ============ الرئيسية ============ -->
             <section class="page active" id="page-dashboard">
                 <div class="page-header">
                     <h2>الرئيسية</h2>
                     <p class="page-subtitle">نظرة عامة على المشروع</p>
                 </div>
 
-                <!-- إحصائيات -->
-                <div class="stats-grid" id="stats-grid">
+                <div class="stats-grid">
                     <div class="stat-card glass">
                         <div class="stat-icon">📝</div>
                         <div class="stat-info">
@@ -101,34 +76,27 @@
                     </div>
                 </div>
 
-                <!-- إجراءات سريعة -->
                 <div class="quick-actions">
                     <h3>إجراءات سريعة</h3>
                     <div class="action-buttons">
                         <button class="action-btn gradient-purple" onclick="App.generatePost()">
-                            <span>⚡</span>
-                            <span>توليد فوري</span>
+                            <span>⚡</span><span>توليد فوري</span>
                         </button>
                         <button class="action-btn gradient-blue" onclick="App.publishNow()">
-                            <span>🚀</span>
-                            <span>نشر الآن</span>
+                            <span>🚀</span><span>نشر الآن</span>
                         </button>
                         <button class="action-btn gradient-pink" onclick="App.createBackup()">
-                            <span>💾</span>
-                            <span>نسخة احتياطية</span>
+                            <span>💾</span><span>نسخة احتياطية</span>
                         </button>
                         <button class="action-btn gradient-green" onclick="App.sendReport()">
-                            <span>📤</span>
-                            <span>تقرير فوري</span>
+                            <span>📤</span><span>تقرير فوري</span>
                         </button>
                     </div>
                 </div>
 
-                <!-- آخر المنشورات -->
                 <div class="section">
                     <div class="section-header">
                         <h3>📜 آخر المنشورات</h3>
-                        <button class="link-btn" onclick="App.loadPosts()">تحديث</button>
                     </div>
                     <div class="posts-list" id="recent-posts">
                         <div class="empty-state">جاري التحميل...</div>
@@ -136,7 +104,7 @@
                 </div>
             </section>
 
-            <!-- ============ صفحة القنوات ============ -->
+            <!-- ============ القنوات ============ -->
             <section class="page" id="page-channels">
                 <div class="page-header">
                     <h2>القنوات</h2>
@@ -145,8 +113,7 @@
 
                 <div class="section">
                     <button class="action-btn full-width gradient-purple" onclick="App.showAddChannel()">
-                        <span>➕</span>
-                        <span>إضافة قناة جديدة</span>
+                        <span>➕</span><span>إضافة قناة جديدة</span>
                     </button>
                 </div>
 
@@ -155,7 +122,7 @@
                 </div>
             </section>
 
-            <!-- ============ صفحة العبارات ============ -->
+            <!-- ============ العبارات ============ -->
             <section class="page" id="page-posts">
                 <div class="page-header">
                     <h2>العبارات</h2>
@@ -163,18 +130,13 @@
                 </div>
 
                 <div class="tabs">
-                    <button class="tab active" data-tab="pending" onclick="App.switchPostTab('pending')">
-                        ⏳ معلّقة
-                    </button>
-                    <button class="tab" data-tab="published" onclick="App.switchPostTab('published')">
-                        ✅ منشورة
-                    </button>
+                    <button class="tab active" data-tab="pending" onclick="App.switchPostTab('pending')">⏳ معلّقة</button>
+                    <button class="tab" data-tab="published" onclick="App.switchPostTab('published')">✅ منشورة</button>
                 </div>
 
                 <div class="section">
                     <button class="action-btn full-width gradient-pink" onclick="App.reverseSeed()">
-                        <span>🔥</span>
-                        <span>توليد عكسي من الأفضل</span>
+                        <span>🔥</span><span>توليد عكسي من الأفضل</span>
                     </button>
                 </div>
 
@@ -183,7 +145,7 @@
                 </div>
             </section>
 
-            <!-- ============ صفحة البذور ============ -->
+            <!-- ============ البذور ============ -->
             <section class="page" id="page-seeds">
                 <div class="page-header">
                     <h2>البذور</h2>
@@ -192,8 +154,7 @@
 
                 <div class="section">
                     <button class="action-btn full-width gradient-purple" onclick="App.showAddSeed()">
-                        <span>➕</span>
-                        <span>إضافة بذرة جديدة</span>
+                        <span>➕</span><span>إضافة بذرة جديدة</span>
                     </button>
                 </div>
 
@@ -202,7 +163,83 @@
                 </div>
             </section>
 
-            <!-- ============ صفحة الإعدادات ============ -->
+            <!-- ============ الجدول ============ -->
+            <section class="page" id="page-schedule">
+                <div class="page-header">
+                    <h2>جدول النشر</h2>
+                    <p class="page-subtitle">أوقات النشر المحددة</p>
+                </div>
+
+                <div class="section">
+                    <button class="action-btn full-width gradient-blue" onclick="App.showAddSchedule()">
+                        <span>➕</span><span>إضافة وقت نشر</span>
+                    </button>
+                </div>
+
+                <div class="section">
+                    <div class="section-header">
+                        <h3>⏰ الأوقات</h3>
+                    </div>
+                    <div class="posts-list" id="schedule-list">
+                        <div class="empty-state">جاري التحميل...</div>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <button class="action-btn full-width gradient-green" onclick="App.showBestHours()">
+                        <span>📊</span><span>أفضل الأوقات (تلقائي)</span>
+                    </button>
+                </div>
+            </section>
+
+            <!-- ============ إنستكرام ============ -->
+            <section class="page" id="page-instagram">
+                <div class="page-header">
+                    <h2>إنستكرام</h2>
+                    <p class="page-subtitle">حسابات مرتبطة بالقنوات</p>
+                </div>
+
+                <div class="section">
+                    <button class="action-btn full-width gradient-pink" onclick="App.showAddInstagram()">
+                        <span>➕</span><span>ربط حساب جديد</span>
+                    </button>
+                </div>
+
+                <div class="section">
+                    <div class="section-header">
+                        <h3>📷 الحسابات</h3>
+                    </div>
+                    <div class="posts-list" id="instagram-list">
+                        <div class="empty-state">جاري التحميل...</div>
+                    </div>
+                </div>
+
+                <div class="section glass" style="padding: 16px;">
+                    <p style="font-size: 12px; color: rgba(255,255,255,0.6); text-align: center;">
+                        ℹ️ يتم ربط الحساب بقناة معينة، ويُنشر كل منشور من القناة تلقائياً على إنستكرام.
+                    </p>
+                </div>
+            </section>
+
+            <!-- ============ المفاتيح ============ -->
+            <section class="page" id="page-keys">
+                <div class="page-header">
+                    <h2>مفاتيح Groq</h2>
+                    <p class="page-subtitle">إدارة المفاتيح النشطة</p>
+                </div>
+
+                <div class="section">
+                    <button class="action-btn full-width gradient-purple" onclick="App.showAddKey()">
+                        <span>➕</span><span>إضافة مفتاح</span>
+                    </button>
+                </div>
+
+                <div class="posts-list" id="keys-list">
+                    <div class="empty-state">جاري التحميل...</div>
+                </div>
+            </section>
+
+            <!-- ============ الإعدادات ============ -->
             <section class="page" id="page-settings">
                 <div class="page-header">
                     <h2>الإعدادات</h2>
@@ -210,20 +247,11 @@
                 </div>
 
                 <div class="settings-list">
-                    <div class="settings-item glass" onclick="App.openKeys()">
-                        <div class="settings-icon">🔑</div>
+                    <div class="settings-item glass" onclick="App.showBestHours()">
+                        <div class="settings-icon">📊</div>
                         <div class="settings-info">
-                            <h4>مفاتيح Groq</h4>
-                            <p>إدارة المفاتيح النشطة</p>
-                        </div>
-                        <div class="settings-arrow">‹</div>
-                    </div>
-
-                    <div class="settings-item glass" onclick="App.openSchedule()">
-                        <div class="settings-icon">📅</div>
-                        <div class="settings-info">
-                            <h4>جدول النشر</h4>
-                            <p>أوقات النشر المحددة</p>
+                            <h4>أفضل الأوقات</h4>
+                            <p>تحليل أوقات النشر</p>
                         </div>
                         <div class="settings-arrow">‹</div>
                     </div>
@@ -257,13 +285,45 @@
                 </div>
 
                 <div class="version-info">
-                    <p>الإصدار 1.0.0</p>
+                    <p>الإصدار 2.0.0</p>
                 </div>
             </section>
 
         </main>
 
-        <!-- Toast notifications -->
+        <!-- شريط التنقل السفلي -->
+        <nav class="bottom-nav">
+            <button class="nav-btn active" data-page="dashboard">
+                <span class="nav-icon">🏠</span>
+                <span class="nav-label">الرئيسية</span>
+            </button>
+            <button class="nav-btn" data-page="channels">
+                <span class="nav-icon">📢</span>
+                <span class="nav-label">القنوات</span>
+            </button>
+            <button class="nav-btn" data-page="posts">
+                <span class="nav-icon">📝</span>
+                <span class="nav-label">العبارات</span>
+            </button>
+            <button class="nav-btn" data-page="schedule">
+                <span class="nav-icon">📅</span>
+                <span class="nav-label">الجدول</span>
+            </button>
+            <button class="nav-btn" data-page="instagram">
+                <span class="nav-icon">📷</span>
+                <span class="nav-label">إنستا</span>
+            </button>
+            <button class="nav-btn" data-page="keys">
+                <span class="nav-icon">🔑</span>
+                <span class="nav-label">المفاتيح</span>
+            </button>
+            <button class="nav-btn" data-page="settings">
+                <span class="nav-icon">⚙️</span>
+                <span class="nav-label">الإعدادات</span>
+            </button>
+        </nav>
+
+        <!-- Toast -->
         <div id="toast-container"></div>
 
         <!-- Modal -->
@@ -273,9 +333,7 @@
                     <h3 id="modal-title">عنوان</h3>
                     <button class="modal-close" onclick="App.closeModal()">✕</button>
                 </div>
-                <div class="modal-body" id="modal-body">
-                    <!-- محتوى ديناميكي -->
-                </div>
+                <div class="modal-body" id="modal-body"></div>
             </div>
         </div>
 
